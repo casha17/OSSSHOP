@@ -16,6 +16,16 @@ public class Configuration {
     private String username = "kbfrdlsi";
     private String password = "m4yjPnOoY10Lls0qVyVulWdjZG6HeUy5";
 
+    public Configuration() {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (java.lang.ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    
+
     public String getUrl() {
         return url;
     }

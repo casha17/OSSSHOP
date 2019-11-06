@@ -5,6 +5,7 @@
  */
 
 import Database.Irepository;
+import Database.ItemRepository;
 import Models.Item;
 import Models.Message;
 import java.io.IOException;
@@ -88,9 +89,9 @@ public class AddItemController extends HttpServlet {
         item.setId(rand.nextInt(10000));
         
       
-      //  Irepository itemRepository = new ItemRepository();
+        Irepository itemRepository = new ItemRepository();
         
-       // itemRepository.Add(item);
+        itemRepository.Add(item);
         
         Message message = new Message();
         message.setMessage("Item is added");

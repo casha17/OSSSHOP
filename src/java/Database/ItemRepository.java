@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author casperhasnsen
+ * @author setero
  */
 public class ItemRepository implements Irepository<Item> {
 
@@ -54,7 +54,7 @@ public class ItemRepository implements Irepository<Item> {
     public void Add(Item item) {
         try (Connection conn = DriverManager.getConnection(configuration.getUrl(), configuration.getUsername(), configuration.getPassword())) {
 
-            String query = "insert into items (id, itemName, itemPrice) values(?,?,?)";
+            String query = "insert into items (id, itemname, itemprice) values(?,?,?)";
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, item.getId());

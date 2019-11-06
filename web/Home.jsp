@@ -20,7 +20,10 @@
    <p class="center">Username <span><jsp:getProperty property="userName" name="user"/></span> </p>  
     
     </div>
+   <form method="get" action="CatalogueController"/>
+   <button type="submit">See Catalogue</button>
     </div>
+    
     <form method="get" action="CartController">
         <button type="submit">Go to Basket</button>
     </form>
