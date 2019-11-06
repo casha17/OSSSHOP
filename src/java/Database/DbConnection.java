@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,13 +35,33 @@ public class DbConnection {
     }
 
     public static void main(String[] args) {
-        
-    }
-    /*
-    public String getConnection(){
-        
+        DbConnection dbConn = new DbConnection();
+        System.out.println(dbConn.getConnection());
     }
     
+    public String getConnection(){
+        String query = "select * from items"; 
+        
+        try (Connection conn = DriverManager.getConnection(configuration.getUrl(), configuration.getUsername(), configuration.getPassword())){
+            
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            String message = null;
+            
+            while (rs.next()){
+                message = rs.getString(1);
+            }
+            
+            return message;
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
+    /*
     public double getInterest(int bankId, int years) {
 
         String queryString = "select interestrate from interestrate where "
