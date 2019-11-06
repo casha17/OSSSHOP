@@ -5,17 +5,17 @@
  */
 package Models;
 
-import java.util.List;
-
 /**
  *
  * @author casperhasnsen
  */
-public class Cart {
+public class CartItem {
+    
+    private int id;
+    
+    private int itemId;
     
     private int cartId;
-    
-    private List<CartItem> items;
-    
-    
 }
+
+

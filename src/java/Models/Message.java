@@ -5,17 +5,20 @@
  */
 package Models;
 
-import java.util.List;
-
 /**
  *
  * @author casperhasnsen
  */
-public class Cart {
-    
-    private int cartId;
-    
-    private List<CartItem> items;
+public class Message {
     
     
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

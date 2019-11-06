@@ -8,6 +8,10 @@
         <servlet-name>CartController</servlet-name>
         <servlet-class>CartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddItemController</servlet-name>
+        <servlet-class>AddItemController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AccountController</servlet-name>
         <url-pattern>/AccountController</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
         <url-pattern>/CartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddItemController</servlet-name>
+        <url-pattern>/AddItemController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

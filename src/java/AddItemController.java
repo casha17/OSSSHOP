@@ -5,8 +5,11 @@
  */
 
 import Database.Irepository;
+import Models.Item;
+import Models.Message;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Random;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author casperhasnsen
  */
-public class CartController extends HttpServlet {
+public class AddItemController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +39,10 @@ public class CartController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CartController</title>");            
+            out.println("<title>Servlet AddItemController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CartController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddItemController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,11 +74,31 @@ public class CartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+        Random rand = new Random();
+     
+        String name = request.getParameter("itemName");
+        Double itemPrice = Double.parseDouble(request.getParameter("itemPrice"));
+        
+        Item item = new Item();
+        
+        item.setItemName(name);
+        item.setItemPrice(itemPrice);
+        item.setId(rand.nextInt(10000));
+        
       
+      //  Irepository itemRepository = new ItemRepository();
         
+       // itemRepository.Add(item);
         
-        RequestDispatcher rd = request.getRequestDispatcher("Basket.jsp");
+        Message message = new Message();
+        message.setMessage("Item is added");
+        request.getSession().setAttribute("message", message);
+       
+        RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
         rd.forward(request, response);
+        
     }
 
     /**

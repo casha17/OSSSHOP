@@ -14,14 +14,28 @@
   <body>
       <h1>Admin page</h1>
         <jsp:useBean id="user" scope="session" class="Models.User" />
-       
+         <jsp:useBean id="message" scope="session" class="Models.Message" />
         
         <div class="box">
     
    <p class="center">Username <span><jsp:getProperty property="userName" name="user"/></span> </p>  
     
     </div>
-    </div>
+    
+   
+   <form method="post" action="AddItemController">
+       <p>Name of item</p>
+       <input type="text" name="itemName"/>
+       <p>Price of item</p>
+       <input type="text" name="itemPrice"/>
+       
+       <button type="submit">Add Item</button>
+   </form>
+   
+
+   <p class="center"><span><jsp:getProperty property="message" name="message"/></span> </p>  
+    
+        
         
   
     </body>
