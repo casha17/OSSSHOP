@@ -40,12 +40,13 @@ public class DbConnection {
     }
     
     public String getConnection(){
-        String query = "select * from items"; 
+        String query = "select * from items where number=?"; 
         
         try (Connection conn = DriverManager.getConnection(configuration.getUrl(), configuration.getUsername(), configuration.getPassword())){
             
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(query);
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, 5);
+            ResultSet rs = ps.executeQuery();
             
             String message = null;
             
