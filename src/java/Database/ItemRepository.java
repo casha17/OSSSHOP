@@ -22,6 +22,10 @@ public class ItemRepository implements Irepository<Item> {
 
     private Configuration configuration = new Configuration();
 
+    public ItemRepository() {
+    
+    }
+    
     @Override
     public Item getById(int id) {
 

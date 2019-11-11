@@ -6,7 +6,6 @@
 
 import Database.Irepository;
 import Database.ItemRepository;
-import Models.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author casperhasnsen
  */
-public class AccountController extends HttpServlet {
+public class DeleteItem extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +37,10 @@ public class AccountController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AccountController</title>");
+            out.println("<title>Servlet DeleteItem</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AccountController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteItem at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -73,24 +72,16 @@ public class AccountController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String name = request.getParameter("username");
-
-        User user = new User();
-        user.setUserName(name);
-
-        request.getSession().setAttribute("user", user);
-
-        if (name.equals("admin")) {
-            RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
-            Irepository itemRepository = new ItemRepository();
-            request.setAttribute("items", itemRepository.getAll());
-        rd.forward(request, response);
-        }
-        //response.sendRedirect("displayUserDetails.jsp" );
-        // Forward to home.jsp
-        RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
-        rd.forward(request, response);
+       
+        Irepository itemRepo = new ItemRepository();
+        
+         String id = request.getParameter("id");
+        
+         itemRepo.deleteById(Integer.parseInt(id));
+         RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
+         Irepository itemRepository = new ItemRepository();
+         request.setAttribute("items", itemRepository.getAll()); 
+         rd.forward(request, response);
     }
 
     /**
