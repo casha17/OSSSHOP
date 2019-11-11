@@ -24,6 +24,18 @@
         <servlet-name>RemoveFromBasket</servlet-name>
         <servlet-class>RemoveFromBasket</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteItemController</servlet-name>
+        <servlet-class>DeleteItemController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmationController</servlet-name>
+        <servlet-class>ConfirmationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderCompleteController</servlet-name>
+        <servlet-class>OrderCompleteController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AccountController</servlet-name>
         <url-pattern>/AccountController</url-pattern>
@@ -47,6 +59,18 @@
     <servlet-mapping>
         <servlet-name>RemoveFromBasket</servlet-name>
         <url-pattern>/RemoveFromBasket</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteItemController</servlet-name>
+        <url-pattern>/DeleteItemController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmationController</servlet-name>
+        <url-pattern>/ConfirmationController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderCompleteController</servlet-name>
+        <url-pattern>/OrderCompleteController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

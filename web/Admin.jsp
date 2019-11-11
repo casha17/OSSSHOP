@@ -4,6 +4,8 @@
     Author     : casperhasnsen
 --%>
 
+<%@page import="Models.Item"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -32,8 +34,46 @@
        <button type="submit">Add Item</button>
    </form>
    
+   <%
+       List<Item> items = (List) request.getAttribute("items");
+     
+       for (Item item : items ) {
+           %>
+           <table>
+               <thead>
+               <th>
+                   <p>Item name</p>
+               </th>
+               <th>
+                   Price
+               </th>
+               <th>
+                   Delete
+               </th>
+               </thead>
+               <form method="post" action="DeleteItemController">
+               <tbody>
+               <td>
+           <p><%= item.getItemName()%></p>
+           </td>
+           <td>
+           <p><%= item.getItemPrice()%></p>
+           </td>
+           <td>
+               <button>Delete</button>
+           </td>
+           </tbody>
+           <input type="hidden" value="<%= item.getId()%>" name="id"/>
+           </form>
+           
+           </table>
+       <%
+       }
+   %>
+   
+   
+       
 
-   <p class="center"><span><jsp:getProperty property="message" name="message"/></span> </p>  
     
         
         

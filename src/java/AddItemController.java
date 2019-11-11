@@ -97,6 +97,7 @@ public class AddItemController extends HttpServlet {
         message.setMessage("Item is added");
         request.getSession().setAttribute("message", message);
        
+        request.setAttribute("items", itemRepository.getAll());
         RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
         rd.forward(request, response);
         
