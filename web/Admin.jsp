@@ -51,7 +51,7 @@
                    Delete
                </th>
                </thead>
-               <form method="post" action="DeleteItem">
+               <form method="post" action="DeleteItemController">
                <tbody>
                <td>
            <p><%= item.getItemName()%></p>
