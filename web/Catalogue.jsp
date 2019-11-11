@@ -4,8 +4,10 @@
     Author     : setero
 --%>
 
+<%@page import="Models.Item"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,8 +15,34 @@
         <title>JSP Page</title>
     </head>
     <body>
-    <c:forEach var = "i" begin = "1" end = "5">
-        Item <c:out value = "${i}"/><p>
-    </c:forEach>
-</body>
+
+
+
+        <%
+
+            List<Item> items = (List) request.getAttribute("items");
+        %>
+
+        <%
+            for (Item item : items) {
+        %>
+
+        <form method="post" action="AddToBasket">
+            <td><%=item.getItemName()%></td>
+            <td><%=item.getItemPrice()%></td>
+            <button type="submit">Add to basket</button>
+            <input type="hidden" value="<%=item.getId()%>" name="id"/>
+            <br>
+        </form>
+
+
+
+        <%
+            }
+        %>
+
+        <form method="get" action="CartController">
+            <button type="submit">Go to Basket</button>
+        </form>
+    </body>
 </html>

@@ -16,6 +16,10 @@
         <servlet-name>CatalogueController</servlet-name>
         <servlet-class>CatalogueController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToBasket</servlet-name>
+        <servlet-class>AddToBasket</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AccountController</servlet-name>
         <url-pattern>/AccountController</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>CatalogueController</servlet-name>
         <url-pattern>/CatalogueController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToBasket</servlet-name>
+        <url-pattern>/AddToBasket</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
