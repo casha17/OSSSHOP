@@ -6,6 +6,7 @@
 package Models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -13,9 +14,9 @@ import java.util.List;
  * @author casperhasnsen
  */
 public class Cart {
-    
+
     private int cartId;
-    
+
     private List<Item> items;
 
     public Cart() {
@@ -37,16 +38,22 @@ public class Cart {
     public void setItems(List<Item> items) {
         this.items = items;
     }
-    
-    public void addItem(Item item){
+
+    public void addItem(Item item) {
         items.add(item);
     }
-    
-    public void removeItem(Item item){
-        items.remove(item);
+
+    public void removeItem(Item item) {
+
+        Iterator iterate = items.iterator();
+
+        while (iterate.hasNext()) {
+            Item listItem = (Item) iterate.next();
+            if (listItem.getId() == item.getId()) {
+                iterate.remove();
+                return;
+            }
+        }
     }
-    
-    
-    
-    
+
 }

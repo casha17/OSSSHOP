@@ -4,6 +4,7 @@
     Author     : casperhasnsen
 --%>
 
+<%@page import="Models.Cart"%>
 <%@page import="Models.Item"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,26 +18,31 @@
         <h2>Basket</h2>
         
         <%
-
-            List<Item> items = (List) request.getSession().getAttribute("basket");
+            Cart cart = (Cart) request.getSession().getAttribute("basket");
+            List<Item> items = cart.getItems();
         %>
 
         <%
             for (Item item : items) {
         %>
 
-        <form method="post" action="AddToBasket">
+        <form method="post" action="RemoveFromBasket">
             <td><%=item.getItemName()%></td>
             <td><%=item.getItemPrice()%></td>
-            <button type="submit">Add to basket</button>
+            <button type="submit">Remove item</button>
             <input type="hidden" value="<%=item.getId()%>" name="id"/>
             <br>
         </form>
 
-
-
         <%
             }
         %>
+        
+        <form method="get" action="CatalogueController">
+            <button type="submit">Go to Catalogue</button>
+        </form>
+        <form method="get" action="ConfirmationController">
+            <button type="submit">Confirm basket</button>
+        </form>
     </body>
 </html>

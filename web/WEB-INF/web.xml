@@ -20,6 +20,10 @@
         <servlet-name>AddToBasket</servlet-name>
         <servlet-class>AddToBasket</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoveFromBasket</servlet-name>
+        <servlet-class>RemoveFromBasket</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AccountController</servlet-name>
         <url-pattern>/AccountController</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>AddToBasket</servlet-name>
         <url-pattern>/AddToBasket</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveFromBasket</servlet-name>
+        <url-pattern>/RemoveFromBasket</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
