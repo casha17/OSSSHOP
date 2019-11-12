@@ -33,30 +33,33 @@
                         <div class="card-table">
                             <div class="content">
                                 
-                                         <%
-
-                                            Cart items = (Cart) request.getSession().getAttribute("basket");
-                                        %>
-
-                                        <%
-                                            for (Item item : items.getItems()) {
-                                        %>
+                                        
 
                                         <form method="post" action="AddToBasket">
                                             <table><tbody>
-                                                    <tr><td>Item Name</td><td>Item Price</td></tr>
+                                                    <tr style="font-weight: bold;"><td>Item Name</td><td>Item Price</td></tr>
+                                                     <%
+
+                                                        Cart items = (Cart) request.getSession().getAttribute("basket");
+                                                    %>
+
+                                                    <%
+                                                        for (Item item : items.getItems()) {
+                                                      %>
                                             <tr>
                                             <td><%=item.getItemName()%></td>
                                             <td><%=item.getItemPrice()%></td>
-                                            </tr></tbody></table>
+                                            </tr>
+                                            <%
+                                            }
+                                            %>
+                                            </tbody></table>
                                             <br>
                                         </form>
 
 
 
-                                        <%
-                                            }
-                                        %>
+                                        
                     </div>
                     </div>
                         </div>
