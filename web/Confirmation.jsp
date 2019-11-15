@@ -76,7 +76,7 @@
                              </div>
                              <div class="field">
                             <label class="label">Telephone</label>
-                            <input type="text>" name="yelephone" class="input is-small" />
+                            <input type="text>" name="telephone" class="input is-small" />
                              </div>
                              <div class="control">
                             <button type="submit" class="button is-link is-fullwidth has-text-weight-medium is-medium">Confirm Order</button>

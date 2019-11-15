@@ -47,6 +47,9 @@
                             <div class="content">
                                 <%
                                     Cart cart = (Cart) request.getSession().getAttribute("basket");
+                                    if(cart == null){
+                                        cart = new Cart();
+                                    }
                                     List<Item> items = cart.getItems();
                                 %>
 

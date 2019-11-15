@@ -1,3 +1,5 @@
+package Controllers;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,12 +7,11 @@
  */
 
 import Database.Irepository;
-import Database.ItemRepository;
-import Models.Item;
-import Models.Message;
+import Database.OrderRepository;
+import Models.Cart;
+import Models.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Random;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author casperhasnsen
  */
-public class AddItemController extends HttpServlet {
+public class ConfirmationController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +41,10 @@ public class AddItemController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddItemController</title>");            
+            out.println("<title>Servlet ConfirmationController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddItemController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ConfirmationController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,7 +62,12 @@ public class AddItemController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("Confirmation.jsp");
+        rd.forward(request, response);
+        
+        
+        
     }
 
     /**
@@ -76,31 +82,22 @@ public class AddItemController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        Cart basket = (Cart) request.getSession().getAttribute("basket");
+        Irepository repo = new OrderRepository();
         
-        Random rand = new Random();
-     
-        String name = request.getParameter("itemName");
-        Double itemPrice = Double.parseDouble(request.getParameter("itemPrice"));
+        Order order = new Order();
+        order.setCustomerName(request.getParameter("name"));
+        order.setCustomerAddress(request.getParameter("address"));
+        order.setPhonenumber(request.getParameter("telephone"));
+        order.setBasket(basket);
         
-        Item item = new Item();
+        repo.Add(order);
         
-        item.setItemName(name);
-        item.setItemPrice(itemPrice);
-        item.setId(rand.nextInt(10000));
         
-      
-        Irepository itemRepository = new ItemRepository();
         
-        itemRepository.Add(item);
-        
-        Message message = new Message();
-        message.setMessage("Item is added");
-        request.getSession().setAttribute("message", message);
-       
-        request.setAttribute("items", itemRepository.getAll());
-        RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
+        request.getSession().invalidate();
+        RequestDispatcher rd = request.getRequestDispatcher("Complete.jsp");
         rd.forward(request, response);
-        
     }
 
     /**

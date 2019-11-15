@@ -1,13 +1,11 @@
+package Controllers;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import Database.Irepository;
-import Database.ItemRepository;
-import Models.Cart;
-import Models.Item;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author setero
+ * @author casperhasnsen
  */
-public class AddToBasket extends HttpServlet {
+public class OrderCompleteController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +37,10 @@ public class AddToBasket extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddToBasket</title>");            
+            out.println("<title>Servlet OrderCompleteController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddToBasket at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OrderCompleteController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,7 +58,8 @@ public class AddToBasket extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+          RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
+        rd.forward(request, response);
     }
 
     /**
@@ -74,19 +73,7 @@ public class AddToBasket extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Irepository repo = new ItemRepository();
-        int id = Integer.parseInt(request.getParameter("id"));
-        Cart basket = null;
-        basket =(Cart) request.getSession().getAttribute("basket");
-        if (basket == null) {
-          basket = new Cart();  
-        }
-        basket.addItem((Item) repo.getById(id));
-        request.getSession().setAttribute("basket", basket);
-        
-        request.setAttribute("items", repo.getAll());      
-        RequestDispatcher rd = request.getRequestDispatcher("Catalogue.jsp");
-        rd.forward(request, response);
+        processRequest(request, response);
     }
 
     /**
